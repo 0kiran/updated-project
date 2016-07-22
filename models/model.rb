@@ -1,6 +1,7 @@
 require 'uri'
 require 'net/http'
 require 'json'
+require 'pry'
 
 
 def make_api_call(request_string)
@@ -15,6 +16,7 @@ def make_api_call(request_string)
         asteroid_hash[:diameter] = (asteroid["estimated_diameter"]["feet"]["estimated_diameter_min"] + asteroid["estimated_diameter"]["feet"]["estimated_diameter_max"])/2
         asteroid_hash[:miss_distance] = asteroid["close_approach_data"][0]["miss_distance"]["miles"]
         asteroid_hash[:velocity] = asteroid["close_approach_data"][0]["relative_velocity"]["miles_per_hour"]
+        asteroid_hash[:apprach_date] = asteroid["close_approach_data"][0]["close_approach_date"]
         asteroid_data << asteroid_hash
     end
    
